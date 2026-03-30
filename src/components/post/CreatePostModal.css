@@ -1,0 +1,138 @@
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2000; padding: 20px;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.15s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-box {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-lg);
+  width: 100%; max-width: 540px;
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  animation: slideUp 0.2s ease;
+  overflow: hidden;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal-head {
+  display: flex; align-items: center;
+  justify-content: space-between; padding: 18px 20px;
+}
+.modal-title { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+
+.modal-close-btn {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: transparent; border: none;
+  color: var(--text-muted); cursor: pointer; transition: all var(--transition);
+}
+.modal-close-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+
+.modal-divider { height: 1px; background: var(--border); }
+
+.modal-body {
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 16px;
+  max-height: 80vh; overflow-y: auto;
+}
+
+.modal-author { display: flex; align-items: center; gap: 12px; }
+.modal-author-name { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+.modal-author-sub  { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+.modal-textarea {
+  width: 100%; background: transparent; border: none;
+  font-size: 16px; color: var(--text-primary);
+  line-height: 1.65; resize: none; min-height: 100px;
+  font-family: inherit;
+}
+.modal-textarea:focus { outline: none; }
+.modal-textarea::placeholder { color: var(--text-muted); }
+
+/* Drag and Drop Zone */
+.drop-zone {
+  border: 2px dashed var(--border-bright);
+  border-radius: var(--radius);
+  padding: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  background: var(--bg-elevated);
+}
+.drop-zone:hover { border-color: var(--accent); background: var(--accent-soft); }
+.drop-zone--active { border-color: var(--accent); background: var(--accent-soft); }
+
+.drop-zone-content {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 8px;
+}
+
+.drop-icon { color: var(--text-muted); }
+.drop-zone:hover .drop-icon { color: var(--accent-bright); }
+
+.drop-text {
+  font-size: 14px; color: var(--text-secondary);
+}
+.drop-link {
+  color: var(--accent-bright); font-weight: 600; cursor: pointer;
+}
+.drop-hint { font-size: 12px; color: var(--text-muted); }
+
+.drop-spinner {
+  width: 24px; height: 24px;
+  border: 2.5px solid var(--border-bright);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.65s linear infinite;
+}
+
+/* Image preview */
+.modal-preview {
+  position: relative; border-radius: var(--radius);
+  overflow: hidden; border: 1px solid var(--border);
+}
+.modal-preview img {
+  width: 100%; max-height: 280px; object-fit: cover; display: block;
+}
+.preview-remove {
+  position: absolute; top: 8px; right: 8px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(0,0,0,0.7); border: none;
+  color: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition);
+}
+.preview-remove:hover { background: var(--danger); }
+
+/* Footer */
+.modal-footer {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding-top: 12px; border-top: 1px solid var(--border);
+}
+.modal-footer-left  { display: flex; gap: 8px; }
+.modal-footer-right { display: flex; align-items: center; gap: 14px; }
+
+.char-ring-wrap {
+  position: relative; width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+}
+.char-ring {
+  width: 32px; height: 32px;
+  transform: rotate(-90deg);
+  position: absolute; top: 0; left: 0;
+}
+.char-count-text {
+  position: absolute; font-size: 10px;
+  font-weight: 700; line-height: 1;
+}
+.char-count-text.warn { color: #f59e0b; }
+.char-count-text.over { color: var(--danger); }
